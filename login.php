@@ -1,4 +1,5 @@
 <?php 
+session_start();
 $conn = new mysqli('localhost','root', '', 'regis');
 if(!$conn){
     echo "Something went wrong with your database connection";
@@ -29,7 +30,9 @@ if(isset($_POST['submit'])){
 
         // Checking if the user exists
         if($query->num_rows > 0) {
+            $_SESSION['login'] = 'Login Success';
             header('location:dashbord.php');
+
         } else {
             echo "User Not Found";
         }
